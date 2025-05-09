@@ -16,7 +16,7 @@ In this paper, we employed two backbone models: **base** and **xtune**. You can 
 - **XTune model**: [xTune](https://github.com/bozheng-hit/xTune)
 
 ## Obtain the Datasets
-Click [here] to download the dataset.
+Click here (After the paper is published, the link will be provided) to download the dataset.
 
 ## Usage
 
