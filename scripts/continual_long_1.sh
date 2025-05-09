@@ -49,33 +49,33 @@ for option in 1 2 3 4 5 6 7 8 9 10 11; do
   fi
 
   if [ $METHOD == "OIL" ]; then
-    topk=0.5    #--> denoising
-    m=0.99      #--> for expert update
-    debias=1    #--> do debias or not
+    topk=0.5   
+    m=0.99  
+    debias=1   
     ccc_restore=0
     cotta_restore=0
   elif [ $METHOD == "cotta" ]; then
-    m=0.99   #--> for expert update
+    m=0.99  
     topk=0
     debias=0
     cotta_restore=1
     ccc_restore=0
   elif [ $METHOD == "CTTA-T" ]; then
-    m=0.99     #--> for expert update
+    m=0.99   
     topk=-1
     debias=0
     ccc_restore=1
     cotta_restore=0
   elif [ $METHOD == "PL" ]; then
-    topk=0.5    #--> denoising
-    m=0    #--> for expert update
-    debias=0    #--> do debias or not
+    topk=0.5  
+    m=0 
+    debias=0   
     ccc_restore=0
     cotta_restore=0
   elif [ $METHOD == "Tent" ]; then
-    topk=-1    #--> denoising
-    m=0    #--> for expert update
-    debias=0    #--> do debias or not
+    topk=-1   
+    m=0    
+    debias=0   
     ccc_restore=0
     cotta_restore=0
   fi
