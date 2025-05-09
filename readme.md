@@ -15,6 +15,9 @@ In this paper, we employed two backbone models: **base** and **xtune**. You can 
 - **Base model**: [XTREME](https://github.com/google-research/xtreme)
 - **XTune model**: [xTune](https://github.com/bozheng-hit/xTune)
 
+## Obtain the Datasets
+Click [here](https://drive.google.com/file/d/1Zpi1doMIg09ODWYRNhEKz-Pfs7TNm94c/view?usp=drive_link) to download the dataset.
+
 ## Usage
 
 To run the model, use the following command:
