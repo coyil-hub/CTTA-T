@@ -41,33 +41,33 @@ for option in 1 2 3 4 5 6 7 ; do
   fi
 
   if [ $METHOD == "OIL" ]; then
-    topk=0.5    #--> denoising
-    m=0.99      #--> for expert update
-    debias=1    #--> do debias or not
+    topk=0.5   
+    m=0.99     
+    debias=1   
     ccc_restore=0
     cotta_restore=0
   elif [ $METHOD == "cotta" ]; then
-    m=0.99   #--> for expert update
+    m=0.99  
     topk=0
     debias=0
     cotta_restore=1
     ccc_restore=0
   elif [ $METHOD == "CTTA-T" ]; then
-    m=0.99     #--> for expert update
+    m=0.99   
     topk=-1
     debias=0
     ccc_restore=1
     cotta_restore=0
   elif [ $METHOD == "PL" ]; then
-    topk=0.5    #--> denoising
-    m=0    #--> for expert update
-    debias=0    #--> do debias or not
+    topk=0.5   
+    m=0  
+    debias=0   
     ccc_restore=0
     cotta_restore=0
   elif [ $METHOD == "Tent" ]; then
-    topk=-1    #--> denoising
-    m=0    #--> for expert update
-    debias=0    #--> do debias or not
+    topk=-1   
+    m=0   
+    debias=0   
     ccc_restore=0
     cotta_restore=0
   fi
@@ -78,54 +78,31 @@ for option in 1 2 3 4 5 6 7 ; do
   TEST_FILE=${DIR}/${langs[0]}.json
   PRED_DIR=${OUT_DIR}/${TGT}/
   mkdir -p "${PRED_DIR}"
-  if [ $debias == 1 ]; then
-    CUDA_VISIBLE_DEVICES=${GPU} python third_party/run_ctta_t.py \
-      --model_type xlm-roberta \
-      --model_name_or_path ${CURRENT_MODEL_PATH} \
-      --initial_model_path ${MODEL_PATH}\
-      --do_METHOD \
-      --debias \
-      --memory_size 1 \
-      --topk $topk \
-      --option $option \
-      --ccc_restore $ccc_restore \
-      --cotta_restore $cotta_restore \
-      --m $m \
-      --alpha 1 \
-      --seed $seed \
-      --learning_rate $LR \
-      --per_gpu_eval_batch_size 16 \
-      --num_train_epochs 1 \
-      --eval_lang ${langs[0]} \
-      --predict_file "${TEST_FILE}" \
-      --output_dir "${PRED_DIR}" \
-      --option_max 7 \
-      --threshold "${t}"\
-      --contribution_threshold "${ct}"
-  elif [ $debias == 0 ]; then
-    CUDA_VISIBLE_DEVICES=${GPU} python third_party/run_ctta_t.py \
-      --model_type xlm-roberta \
-      --model_name_or_path ${CURRENT_MODEL_PATH} \
-      --initial_model_path ${MODEL_PATH}\
-      --do_METHOD \
-      --memory_size 1 \
-      --topk $topk \
-      --option $option \
-      --ccc_restore $ccc_restore \
-      --cotta_restore $cotta_restore \
-      --m $m \
-      --alpha 1 \
-      --seed $seed \
-      --learning_rate $LR \
-      --per_gpu_eval_batch_size 16 \
-      --num_train_epochs 1 \
-      --eval_lang ${langs[0]} \
-      --predict_file "${TEST_FILE}" \
-      --output_dir "${PRED_DIR}" \
-      --option_max 7 \
-      --threshold "${t}"\
-      --contribution_threshold "${ct}"
-  fi
+
+  CUDA_VISIBLE_DEVICES=${GPU} python third_party/run_ctta_t.py \
+    --model_type xlm-roberta \
+    --model_name_or_path ${CURRENT_MODEL_PATH} \
+    --initial_model_path ${MODEL_PATH}\
+    --do_METHOD \
+    --debias $debias \
+    --memory_size 1 \
+    --topk $topk \
+    --option $option \
+    --ccc_restore $ccc_restore \
+    --cotta_restore $cotta_restore \
+    --m $m \
+    --alpha 1 \
+    --seed $seed \
+    --learning_rate $LR \
+    --per_gpu_eval_batch_size 16 \
+    --num_train_epochs 1 \
+    --eval_lang ${langs[0]} \
+    --predict_file "${TEST_FILE}" \
+    --output_dir "${PRED_DIR}" \
+    --option_max 7 \
+    --threshold "${t}"\
+    --contribution_threshold "${ct}"
+
 
   PRED_FILE=${PRED_DIR}/predictions_${langs[0]}_.json
   EVAL_SCRIPT=${PWD}/third_party/evaluate_squad.py
