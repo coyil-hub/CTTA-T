@@ -1,5 +1,3 @@
-# Continual Test-Time Adaptation for Domain Shift Text Understanding
-
 ## Installation
 
 To install the required dependencies, run:
