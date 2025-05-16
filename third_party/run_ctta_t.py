@@ -394,8 +394,8 @@ def METHOD(args, model, tokenizer, model_initial_state, option_max, prefix="", l
 
                                     consistency_score = torch.max(consistency)
                                     combined_probs = teacher_probs[sample_idx] * F.softmax(consistency, dim=0)
-                                    predicted_label = torch.argmax(combined_probs)
                                     combined_probs = F.softmax(combined_probs, dim=0)
+                                    predicted_label = torch.argmax(combined_probs)
                                     teacher_max_position[sample_idx] = predicted_label
 
                                     if consistency_score < consistency_threshold:
