@@ -33,9 +33,11 @@ bash ./scripts/continual_short_1.sh xlm-roberta-base tasks [device] [model_path]
 - "PL"
 - "Tent"
 
+Regarding the codes for SAR, SoTTA, and REM, we are still in the process of sorting them out.
+
 ### Hyperparameters:
 
-**gamma** and **tau** are hyperparameters. For the **base** model, gamma is 0.4 and tau is 1.2. For the **xTune** model, gamma is 0.4 and tau is 0.6.
+**gamma** and **tau** are hyperparameters. For the **base** model, gamma is 0.4, and tau is 1.2. For the **xTune** model, gamma is 0.4 and tau is 0.6.
 
 ### Learning Rate:
 
