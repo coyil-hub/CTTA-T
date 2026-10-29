@@ -1,4 +1,4 @@
-Our paper, **CTTA-T: Continual Test-Time Adaptation for Text Understanding via Teacher-Student with a Domain-aware and Generalized Teacher**, has been accepted by **ACL 2026**!
+Our paper, **CTTA-T: Continual Test-Time Adaptation for Text Understanding via Teacher-Student with a Domain-aware and Generalized Teacher**, has been accepted by **ACL 2026 Main**!
 
 ## Installation
 
